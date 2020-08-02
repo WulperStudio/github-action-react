@@ -23,3 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 *.tfvars
+terraform.tfstate.backup
+.vscode

@@ -42,17 +42,17 @@ resource "digitalocean_droplet" "app" {
   }
 
   provisioner "file" {
-    source      = "../../scripts/ssh.conf"
+    source      = "../scripts/ssh.conf"
     destination = "/root/.ssh/config"
   }
 
   provisioner "file" {
-    source      = "../../scripts/deploy.mk"
+    source      = "../scripts/deploy.mk"
     destination = "/home/deploy.mk"
   }
 
   provisioner "file" {
-    source      = "../../scripts/build-server.sh"
+    source      = "../scripts/build-server.sh"
     destination = "/tmp/build-server.sh"
   }
 

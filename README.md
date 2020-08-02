@@ -66,7 +66,7 @@
 
     6) Detro del repositorio ir a la opción **Settings**/**Secrets**
 
-    ![Example 1](https://raw.githubusercontent.com/WulperStudio/github-action-react/master/docs/secrets.png)
+    ![Example 1](https://raw.githubusercontent.com/WulperStudio/github-action-react/master/docs/secrects.png)
 
     7) Crear las claves secretas con las credenciales y contraseñas para los accesos del despliegue:<br><br>
 
