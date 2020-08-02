@@ -1,0 +1,6 @@
+token="**************************************************"
+app_name="github-action-react"
+project_name="PROJECT DEMO"
+ssh_key_fingerprint="**************************************************"
+private_key="**********dirección/nombre clave privada**********"
+env_file="**********dirección/nombre del archivo .env**********"

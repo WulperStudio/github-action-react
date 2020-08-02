@@ -1,9 +1,12 @@
 # github-action-react
 
-- #### Tecnologías:
+- #### Tecnologías y/o Conocimientos:
     - Git
     - Make
     - Docker
+    - Docker Compose
+    - Github
+    - DigitalOcean
 
 - #### Creación del proyecto:
 
@@ -63,5 +66,14 @@
 
     6) Detro del repositorio ir a la opción **Settings**/**Secrets**
 
-    ![Example 1]()
+    ![Example 1](https://raw.githubusercontent.com/WulperStudio/github-action-react/master/docs/secrets.png)
 
+    7) Crear las claves secretas con las credenciales y contraseñas para los accesos del despliegue:<br><br>
+
+    Clave              | Valor
+    ---------------    | ---------------
+    PRIVATE_KEY        | Llave privada del droplet (instancia)
+    REMOTE_FINGERPRINT | Fingerprint de la cuenta de [DigitalOcean](https://www.digitalocean.com)
+    REMOTE_HOST        | Host (**IP**) del droplet (instancia)
+    REMOTE_PORT        | Puerto de entrada (22 generalmente) del droplet (instancia)
+    REMOTE_USER        | Usuario (root)  del droplet (instancia)
