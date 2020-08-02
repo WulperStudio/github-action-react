@@ -4,7 +4,9 @@ variable "app_name" {}
 
 variable "ssh_key_fingerprint" {}
 
-variable "private_key" {}
+variable "private_key_do" {}
+
+variable "private_key_repo" {}
 
 variable "env_file" {}
 
@@ -25,15 +27,20 @@ resource "digitalocean_droplet" "app" {
 
   connection {
     type        = "ssh"
-    private_key = file(var.private_key)
+    private_key = file(var.private_key_do)
     user        = "root"
     timeout     = "2m"
     host        = self.ipv4_address
   }
 
   provisioner "file" {
-    source      = var.private_key
+    source      = var.private_key_do
     destination = "/root/.ssh/id_rsa"
+  }
+
+  provisioner "file" {
+    source      = var.private_key_repo
+    destination = "/root/.ssh/git_repo"
   }
 
   provisioner "file" {

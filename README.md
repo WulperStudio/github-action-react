@@ -72,7 +72,7 @@
 
     Clave              | Valor
     ---------------    | ---------------
-    PRIVATE_KEY        | Llave privada del droplet (instancia)
+    PRIVATE_KEY        | Llave privada del droplet (instancia) en [DigitalOcean](https://www.digitalocean.com)
     REMOTE_FINGERPRINT | Fingerprint de la cuenta de [DigitalOcean](https://www.digitalocean.com)
     REMOTE_HOST        | Host (**IP**) del droplet (instancia)
     REMOTE_PORT        | Puerto de entrada (22 generalmente) del droplet (instancia)
