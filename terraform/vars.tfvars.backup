@@ -1,0 +1,7 @@
+token="**************************************************"
+app_name="github-action-react"
+project_name="PROJECT DEMO"
+ssh_key_fingerprint="**************************************************"
+private_key_do="**********dirección/nombre clave privada registrada en DigitalOcean**********"
+private_key_repo="**********dirección/nombre clave privada del repositorio (o deploy key) en github**********"
+env_file="**********dirección/nombre del archivo .env**********"

@@ -1,0 +1,23 @@
+name: github-action-react
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: deploy
+      uses: alinz/ssh-scp-action@master
+      env:
+        HELLO: word
+      with:
+        key:  ${{ secrets.PRIVATE_KEY }}
+        host: ${{ secrets.REMOTE_HOST }}
+        port: ${{ secrets.REMOTE_PORT }}
+        user: ${{ secrets.REMOTE_USER }}
+        ssh_before: |
+          echo $HELLO
+          make -C /home -f deploy.mk update

@@ -1,44 +1,79 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# github-action-react
 
-## Available Scripts
+- #### Tecnologías y/o Conocimientos:
+    - Git
+    - Make
+    - Docker
+    - Docker Compose
+    - Github
+    - DigitalOcean
 
-In the project directory, you can run:
+- #### Creación del proyecto:
 
-### `yarn start`
+    1) Abrir la terminal (shell).
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+    2) Crear el proyecto con **create-react-app**.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+    ```
+    $ npx create-react-app github-action-react --template typescript
+    ```
 
-### `yarn test`
+- #### Crear configuración para github actions
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    1) Ir al directorio raíz del proyecto.
 
-### `yarn build`
+    2) Crear la siguiente estructura de carpetas:
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    ```
+    $ mkdir -p .github/workflows
+    ```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+    3) Crear el archivo *main.yml* (archivo de configuración YAML) dentro de la carpeta recién creada *workflows*:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    ```
+    $ touch main.yml
+    ```
 
-### `yarn eject`
+    4) llenarlo con el siguiente contenido:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    ---
+        name: github-action-react
+        on:
+            push:
+                branches: [ master ]
+            pull_request:
+                branches: [ master ]
+        jobs:
+            deploy:
+                runs-on: ubuntu-latest
+                steps:
+                - uses: actions/checkout@master
+                - name: deploy
+                uses: alinz/ssh-scp-action@master
+                env:
+                    HELLO: word
+                with:
+                    key:  ${{ secrets.PRIVATE_KEY }}
+                    host: ${{ secrets.REMOTE_HOST }}
+                    port: ${{ secrets.REMOTE_PORT }}
+                    user: ${{ secrets.REMOTE_USER }}
+                    ssh_before: |
+                        echo $HELLO
+                        make -C /home -f deploy.mk update
+    ---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    5) Subir los cambios al repositorio en *github.com*
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    6) Detro del repositorio ir a la opción **Settings**/**Secrets**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+    ![Example 1](https://raw.githubusercontent.com/WulperStudio/github-action-react/master/docs/secrects.png)
 
-## Learn More
+    7) Crear las claves secretas con las credenciales y contraseñas para los accesos del despliegue:<br><br>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+    Clave              | Valor
+    ---------------    | ---------------
+    PRIVATE_KEY        | Llave privada del droplet (instancia) en [DigitalOcean](https://www.digitalocean.com)
+    REMOTE_FINGERPRINT | Fingerprint de la cuenta de [DigitalOcean](https://www.digitalocean.com)
+    REMOTE_HOST        | Host (**IP**) del droplet (instancia)
+    REMOTE_PORT        | Puerto de entrada (22 generalmente) del droplet (instancia)
+    REMOTE_USER        | Usuario (root)  del droplet (instancia)
